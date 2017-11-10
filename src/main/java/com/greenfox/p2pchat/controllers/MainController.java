@@ -9,20 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RestController
+@Controller
 public class MainController {
 
     @Autowired
     LogService logService;
 
-//    @GetMapping("/")
-//    public String heading() {
-//        return "index";
-//    }
-
-    @GetMapping("/log")
-    public String getLog(HttpServletRequest request) {
-        System.out.println(System.getenv("CHAT_APP_LOGLEVEL"));
-        return new Log(request).getLog();
+    @GetMapping("/")
+    public String heading(HttpServletRequest request) { ;
+        System.out.println(new Log(request).getLog());
+        return "index";
     }
+
 }
