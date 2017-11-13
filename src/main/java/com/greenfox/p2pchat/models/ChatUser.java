@@ -10,6 +10,9 @@ public class ChatUser {
     @Id
     private String name;
 
+    public ChatUser(    ) {
+    }
+
     public ChatUser(String name) {
         this.name = name;
     }

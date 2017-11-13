@@ -44,7 +44,7 @@ public class MainController {
             error.setMessage("The username field is empty");
             return "redirect:/enter";
         } else chatUserService.save(name);
-        return "redirect:/index";
+        return "redirect:/";
     }
 
 }
