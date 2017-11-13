@@ -42,9 +42,9 @@ public class MainController {
         mainService.printLog(request);
         if (name.equals("")) {
             error.setMessage("The username field is empty");
-            return "enter";
+            return "redirect:/enter";
         } else chatUserService.save(name);
-        return "index";
+        return "redirect:/index";
     }
 
 }
