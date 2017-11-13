@@ -15,8 +15,8 @@
 <body>
 <h1>Enter</h1>
 
-<form th:action="@{/save}" method="post">
-    <input type="text"  />
+<form action="/enter/add" method="post">
+    <input type="text" th:name="name"/>
     <p><input type="submit" value="Save" /></p>
 </form>
 </body>
