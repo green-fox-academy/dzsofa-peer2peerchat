@@ -24,4 +24,9 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/enter")
+    public String enter() {
+        return "enter";
+    }
+
 }
