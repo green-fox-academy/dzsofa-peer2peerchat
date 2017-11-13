@@ -14,7 +14,7 @@
 </head>
 <body>
 <h1>Enter</h1>
-
+<h3 th:if="@{name} == null ? 'The username field is empty'"></h3>
 <form action="/enter/add" method="get">
     <input type="text" th:name="name"/>
     <p><input type="submit" value="Save" /></p>
