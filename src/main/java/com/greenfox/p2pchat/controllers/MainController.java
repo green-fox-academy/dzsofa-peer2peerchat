@@ -1,10 +1,11 @@
 package com.greenfox.p2pchat.controllers;
 
-import com.greenfox.p2pchat.models.ChatUser;
 import com.greenfox.p2pchat.models.Log;
 import com.greenfox.p2pchat.models.Error;
+import com.greenfox.p2pchat.repositories.ChatUserRepository;
 import com.greenfox.p2pchat.services.LogService;
-import com.greenfox.p2pchat.services.UserService;
+import com.greenfox.p2pchat.services.MainService;
+import com.greenfox.p2pchat.services.ChatUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,29 +20,30 @@ public class MainController {
     LogService logService;
 
     @Autowired
-    UserService userService;
+    ChatUserService chatUserService;
+
+    @Autowired
+    MainService mainService;
 
     @GetMapping("/")
     public String heading(HttpServletRequest request) {
-        if (System.getenv("CHAT_APP_LOGLEVEL").equals("INFO")) {
-            System.out.println(new Log(request).getLog());
-        } else if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
-            System.err.println(new Log(request).getLog());
-        }
+        mainService.printLog(request);
         return "index";
     }
 
     @GetMapping("/enter")
-    public String enter() {
+    public String enter(HttpServletRequest request) {
+        mainService.printLog(request);
         return "enter";
     }
 
     @GetMapping("enter/add")
-    public String addUserName(@RequestParam String name, Error error) {
+    public String addUserName(@RequestParam String name, Error error, HttpServletRequest request) {
+        mainService.printLog(request);
         if (name.equals("")) {
             error.setMessage("The username field is empty");
             return "enter";
-        } else userService.save(name);
+        } else chatUserService.save(name);
         return "index";
     }
 
