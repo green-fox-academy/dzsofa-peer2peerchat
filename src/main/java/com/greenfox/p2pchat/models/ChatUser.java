@@ -7,9 +7,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users")
 public class ChatUser {
-
     @Id
-
     private String name;
 
     public ChatUser(String name) {
