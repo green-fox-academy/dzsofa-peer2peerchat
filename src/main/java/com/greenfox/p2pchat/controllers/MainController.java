@@ -5,7 +5,6 @@ import com.greenfox.p2pchat.services.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,8 +15,12 @@ public class MainController {
     LogService logService;
 
     @GetMapping("/")
-    public String heading(HttpServletRequest request) { ;
-        System.out.println(new Log(request).getLog());
+    public String heading(HttpServletRequest request) {
+        if (System.getenv("CHAT_APP_LOGLEVEL").equals("INFO")) {
+            System.out.println(new Log(request).getLog());
+        } else if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
+            System.err.println(new Log(request).getLog());
+        }
         return "index";
     }
 
