@@ -1,5 +1,6 @@
 package com.greenfox.p2pchat.controllers;
 
+import com.greenfox.p2pchat.models.ChatUser;
 import com.greenfox.p2pchat.models.Log;
 import com.greenfox.p2pchat.models.Error;
 import com.greenfox.p2pchat.repositories.ChatUserRepository;
@@ -9,6 +10,8 @@ import com.greenfox.p2pchat.services.ChatUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,13 +40,13 @@ public class MainController {
         return "enter";
     }
 
-    @GetMapping("enter/add")
-    public String addUserName(@RequestParam String name, Error error, HttpServletRequest request) {
+    @PostMapping("enter/add")
+    public String addUserName(@ModelAttribute ChatUser user, Error error, HttpServletRequest request) {
         mainService.printLog(request);
-        if (name.equals("")) {
-            error.setMessage("The username field is empty");
+        if (user.getName().equals("")) {
             return "redirect:/enter";
-        } else chatUserService.save(name);
+        } else
+            chatUserService.save(user);
         return "redirect:/";
     }
 
