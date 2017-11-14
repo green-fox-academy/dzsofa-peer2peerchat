@@ -14,10 +14,12 @@
 </head>
 <body>
 <h1>Enter</h1>
-<h3 th:if="@{name} == null ? 'The username field is empty'"></h3>
-<form action="/enter/add" method="get">
-    <input type="text" th:name="name"/>
-    <p><input type="submit" value="Save" /></p>
+<!--<h3 th:if="${name} == null ? 'The username field is empty' : ''"></h3>-->
+<form action="/enter/add" th:object="${user}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <label for="name">Enter your name:</label>
+    <input type="text" id="name" th:field="*{name}" placeholder="username"/>
+    <input type="submit" value="Save" />
 </form>
 </body>
 </html>
