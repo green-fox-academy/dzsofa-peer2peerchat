@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ChatUserRepository extends CrudRepository<ChatUser, String> {
+public interface ChatUserRepository extends CrudRepository<ChatUser, Long> {
 
 //ChatUser findChatUserByName(String name);
 

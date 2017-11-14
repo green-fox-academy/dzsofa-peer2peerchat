@@ -13,13 +13,14 @@ import java.util.Random;
 public class Message {
     private String text;
     @Id
+    @GeneratedValue
     private long id;
     Random rand = new Random();
     private String createdAt;
 
-    public Message(String text, long id) {
+    public Message(String text) {
         this.text = text;
-        this.id = rand.nextInt(9999999) + 1000000;
+        this.id = (long)(rand.nextInt(9999999) + 1000000);
         this.createdAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
     }
 
