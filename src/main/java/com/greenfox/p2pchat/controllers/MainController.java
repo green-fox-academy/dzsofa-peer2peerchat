@@ -9,6 +9,7 @@ import com.greenfox.p2pchat.services.MainService;
 import com.greenfox.p2pchat.services.ChatUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +36,8 @@ public class MainController {
     }
 
     @GetMapping("/enter")
-    public String enter(HttpServletRequest request) {
+    public String enter(Model model, HttpServletRequest request) {
+        model.addAttribute("newUser", new ChatUser());
         mainService.printLog(request);
         return "enter";
     }

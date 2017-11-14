@@ -15,7 +15,7 @@
 <body>
 <h1>Enter</h1>
 <!--<h3 th:if="${name} == null ? 'The username field is empty' : ''"></h3>-->
-<form action="/enter/add" th:object="${user}" method="post">
+<form action="/enter/add" th:object="${newUser}" method="post">
     <input type="hidden" th:field="*{id}"/>
     <label for="name">Enter your name:</label>
     <input type="text" id="name" th:field="*{name}" placeholder="username"/>
