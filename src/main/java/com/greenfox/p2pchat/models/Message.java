@@ -19,11 +19,13 @@ public class Message {
 
     public Message(String text) {
         this.text = text;
-        this.id = new Random().nextInt(9999999) + 1000000;
+        this.id=(int) (1000000 + Math.random() * 9999999);
         this.createdAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+        System.out.println(getId());
     }
 
     public Message() {
+        this.id=(int) (1000000 + Math.random() * 9999999);
     }
 
     public String getText() {

@@ -28,8 +28,8 @@
 <!--<input type="submit" value="Save" />-->
 <!--</form>-->
 <form action="/addmessage" th:object="${newMessage}" method="post">
-    <label for="text">Enter your message:</label>
-    <input type="text" id="text" th:field="*{text}" placeholder="your message"/>
+    <input type="hidden" th:field="*{id}"/>
+    <textarea th:field="*{text}" rows="5" cols="30">Add your message here</textarea>
     <input type="submit" value="Save"/>
 </form>
 </body>
