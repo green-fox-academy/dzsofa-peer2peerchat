@@ -12,15 +12,14 @@ import java.util.Random;
 @Table(name = "messages")
 public class Message {
     private String text;
+
     @Id
-    @GeneratedValue
-    private long id;
-    Random rand = new Random();
+    private int id;
     private String createdAt;
 
     public Message(String text) {
         this.text = text;
-        this.id = (long)(rand.nextInt(9999999) + 1000000);
+        this.id = new Random().nextInt(9999999) + 1000000;
         this.createdAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
     }
 
@@ -35,11 +34,11 @@ public class Message {
         this.text = text;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }
