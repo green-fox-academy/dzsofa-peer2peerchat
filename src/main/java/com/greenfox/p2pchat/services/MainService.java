@@ -9,11 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MainService {
 
     public boolean isInfo() {
-        if (System.getenv("CHAT_APP_LOGLEVEL").equals("INFO")) {
-            return true;
-        } else {
-            return false;
-        }
+        return (System.getenv("CHAT_APP_LOGLEVEL").equals("INFO"));
     }
 
     public void printLog(HttpServletRequest request) {
