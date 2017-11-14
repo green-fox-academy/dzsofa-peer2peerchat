@@ -13,13 +13,17 @@ public class ChatUserService {
     @Autowired
     ChatUserRepository chatUserRepository;
 
-    public void save(String name) {
-        chatUserRepository.save(new ChatUser(name));
+    public void save(ChatUser user) {
+        chatUserRepository.save(user);
     }
 
     public Iterable<ChatUser> getUserList() {
         return chatUserRepository.findAll();
     }
+
+//    public boolean checkIfUserExists(String name) {
+//       return chatUserRepository.findChatUserByNameExists(name);
+//    }
 
 //    public ChatUser checkIfExists() {
 //
