@@ -37,9 +37,12 @@ public class MainController {
     @GetMapping("/")
     public String heading(HttpServletRequest request, Model model) {
         mainService.printLog(request);
-        model.addAttribute("messages", messageService.listAllMessages());
-        model.addAttribute("newMessage", new Message());
-        return "index";
+        if (chatUserService.hasEntry()) {
+            model.addAttribute("activeUser", chatUserService.findActive());
+            model.addAttribute("messages", messageService.listAllMessages());
+            model.addAttribute("newMessage", new Message());
+            return "index";
+        } else return "redirect:/enter";
     }
 
     @PostMapping("/addmessage")
