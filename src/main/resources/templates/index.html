@@ -12,7 +12,7 @@
     <meta charset="UTF-8"/>
     <title>Chat App</title>
 </head>
-<body>
+<body style="margin-left: 30px">
 <h1>Peer to Peer Chat App</h1>
 
 <form action="/enter/add" th:object="${activeUser}" method="post">
@@ -26,12 +26,12 @@
 
 
 <ul th:each="message : ${messages}">
-    <li></li>
+    <li th:text="${message.getUserName()}"></li>
     <li style="list-style-type:none" th:text="${message.getText()}"></li>
 </ul>
 <form class=".form-inline" action="/addmessage" th:object="${newMessage}" method="post">
     <input type="hidden" th:field="*{id}"/>
-    <textarea style="margin-left: 30px" th:field="*{text}" rows="5" cols="30">Add your message here</textarea>
+    <textarea th:field="*{text}" rows="5" cols="30">Add your message here</textarea>
     <input type="submit" value="Save"/>
 </form>
 </body>

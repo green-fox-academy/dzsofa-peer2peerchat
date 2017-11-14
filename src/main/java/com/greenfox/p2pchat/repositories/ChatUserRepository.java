@@ -6,8 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ChatUserRepository extends CrudRepository<ChatUser, Long> {
-
-//ChatUser findChatUserByName(String name);
-
-//boolean findChatUserByNameExists(String name);
 }

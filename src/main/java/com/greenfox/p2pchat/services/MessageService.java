@@ -11,11 +11,15 @@ public class MessageService {
     @Autowired
     MessageRepository messageRepository;
 
+    @Autowired
+    ChatUserService userService;
+
     public Iterable<Message> listAllMessages() {
         return messageRepository.findAll();
     }
 
     public void save(Message message) {
+        message.setUserName(userService.findActive().getName());
         messageRepository.save(message);
     }
 }
