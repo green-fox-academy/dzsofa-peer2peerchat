@@ -26,6 +26,8 @@ public class Message {
 
     public Message() {
         this.id=(int) (1000000 + Math.random() * 9999999);
+        this.createdAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+
     }
 
     public String getText() {
