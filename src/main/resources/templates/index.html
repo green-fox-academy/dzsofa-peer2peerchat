@@ -14,9 +14,25 @@
 </head>
 <body>
 <h1>Peer to Peer Chat App</h1>
-<form action="/enter/add" method="post">
-    <input type="text" th:name="name" placeholder="username"/>
-    <input type="submit" value="Update"/>
+<ul>
+    <li>App<br/>Hi there! Send your message with the form below.</li>
+</ul>
+<ul th:each="message : ${messages}">
+    <li></li>
+    <li style="list-style-type:none" th:text="${message.getText()}"></li>
+</ul>
+    <!--<form action="/enter/add" th:object="${newUser}" method="post">-->
+    <!--<input type="hidden" th:field="*{id}"/>-->
+    <!--<label for="name">Update your name:</label>-->
+    <!--<input type="text" id="name" th:field="*{name}" placeholder="username"/>-->
+    <!--<input type="submit" value="Save" />-->
+<!--</form>-->
+<form action="/addmessage" th:object="${newMessage}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <label for="text">Enter your message:</label>
+    <input type="text" id="text" th:field="*{text}" placeholder="your message"/>
+    <!--<input type="hidden" th:field="*{createdAt}"/>-->
+    <input type="submit" value="Save" />
 </form>
 </body>
 </html>
