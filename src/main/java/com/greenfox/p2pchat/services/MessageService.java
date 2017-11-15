@@ -19,7 +19,6 @@ public class MessageService {
     }
 
     public void save(Message message) {
-        message.setUserName(userService.findActive().getName());
         messageRepository.save(message);
     }
 }
