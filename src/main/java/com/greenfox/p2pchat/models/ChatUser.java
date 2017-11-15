@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
-@Component
 @Entity
 @Table(name = "users")
 public class ChatUser {
@@ -15,23 +14,23 @@ public class ChatUser {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String noUserName;
 
-    private String name;
+    private String username;
 
     public ChatUser() {
     }
 
-    public ChatUser(String name) {
-        this.name = name;
-        this.noUserName = name.equals("") ? "The username field is empty!" : null;
+    public ChatUser(String username) {
+        this.username = username;
+        this.noUserName = username.equals("") ? "The username field is empty!" : null;
 
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public long getId() {

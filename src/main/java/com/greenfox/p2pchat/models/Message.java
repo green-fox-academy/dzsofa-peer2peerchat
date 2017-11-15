@@ -10,24 +10,33 @@ import java.time.format.DateTimeFormatter;
 @Table(name = "messages")
 public class Message {
 
-    private String text;
-    private String userName;
     @Id
     private int id;
-    private String createdAt;
+    private String text;
+    private String username;
+    private String timestamp;
 
-    public Message(String text, String userName) {
+    public Message(String text, String username) {
         this.text = text;
-        this.userName = userName;
+        this.username = username;
         this.id = (int) (1000000 + Math.random() * 999999);
-        this.createdAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+        this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
     }
 
     public Message() {
-        this.userName = null;
+        this.username = "dzsofa";
         this.id = (int) (1000000 + Math.random() * 999999);
-        this.createdAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+        this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
 
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getText() {
@@ -38,29 +47,19 @@ public class Message {
         this.text = text;
     }
 
-    public int getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-
-    public String getUserName() {
-        return userName;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
 }
