@@ -1,10 +1,7 @@
 package com.greenfox.p2pchat.controllers;
 
 import com.greenfox.p2pchat.models.ChatUser;
-import com.greenfox.p2pchat.models.Log;
-import com.greenfox.p2pchat.models.Error;
 import com.greenfox.p2pchat.models.Message;
-import com.greenfox.p2pchat.repositories.ChatUserRepository;
 import com.greenfox.p2pchat.services.LogService;
 import com.greenfox.p2pchat.services.MainService;
 import com.greenfox.p2pchat.services.ChatUserService;
@@ -12,15 +9,15 @@ import com.greenfox.p2pchat.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MainController {
+//    private static final Logger logger =
+//            Logger.getLogger(MainController.class.getName());
+
 
     @Autowired
     LogService logService;
@@ -36,9 +33,10 @@ public class MainController {
 
     @GetMapping("/")
     public String heading(HttpServletRequest request, Model model) {
+        ChatUser activeUser = chatUserService.findActive();
         mainService.printLog(request);
         if (chatUserService.hasEntry()) {
-            model.addAttribute("activeUser", chatUserService.findActive());
+            model.addAttribute("activeUser", activeUser);
             model.addAttribute("messages", messageService.listAllMessages());
             model.addAttribute("newMessage", new Message());
             return "index";
@@ -60,12 +58,18 @@ public class MainController {
     }
 
     @PostMapping("enter/add")
-    public String addUserName(@ModelAttribute ChatUser user, Error error, HttpServletRequest request) {
+    public String addUserName(@ModelAttribute ChatUser user, HttpServletRequest request, Model model) {
         mainService.printLog(request);
-        if (user.getName().equals("")) {
+        if (user.getName().equals("") || user.getName().equals(null)) {
             return "redirect:/enter";
         } else
             chatUserService.save(user);
+        return "redirect:/";
+    }
+
+    @PostMapping("/update")
+    public String updateUser(@ModelAttribute ChatUser user) {
+        chatUserService.save(user);
         return "redirect:/";
     }
 

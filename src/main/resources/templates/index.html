@@ -15,10 +15,11 @@
 <body style="margin-left: 30px">
 <h1>Peer to Peer Chat App</h1>
 
-<form action="/enter/add" th:object="${activeUser}" method="post">
-    <label for="name">Update your name:</label>
-    <input type="text" id="name" th:field="*{name}" th:placeholder="${activeUser.getName()}"/>
-    <input type="submit" value="Save"/>
+<form th:action="@{/update}" th:object="${activeUser}" method="post">
+    <label for="Your username">Your username:</label>
+    <input th:type="hidden" th:field="*{id}" />
+    <input type="text" id="Your username" th:field="*{name}" th:placeholder="*{name}"/>
+    <button type="submit">update</button>
 </form>
 <ul>
     <li>App<br/>Hi there! Send your message with the form below.</li>
