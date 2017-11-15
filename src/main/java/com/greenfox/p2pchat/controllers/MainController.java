@@ -50,27 +50,4 @@ public class MainController {
         return "redirect:/";
     }
 
-    @GetMapping("/enter")
-    public String enter(Model model, HttpServletRequest request) {
-        model.addAttribute("newUser", new ChatUser());
-        mainService.printLog(request);
-        return "enter";
-    }
-
-    @PostMapping("enter/add")
-    public String addUserName(@ModelAttribute ChatUser user, HttpServletRequest request, Model model) {
-        mainService.printLog(request);
-        if (user.getName().equals("") || user.getName().equals(null)) {
-            return "redirect:/enter";
-        } else
-            chatUserService.save(user);
-        return "redirect:/";
-    }
-
-    @PostMapping("/update")
-    public String updateUser(@ModelAttribute ChatUser user) {
-        chatUserService.save(user);
-        return "redirect:/";
-    }
-
 }
