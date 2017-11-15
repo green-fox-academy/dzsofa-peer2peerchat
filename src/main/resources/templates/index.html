@@ -18,7 +18,7 @@
 <form th:action="@{/update}" th:object="${activeUser}" method="post">
     <label for="Your username">Your username:</label>
     <input th:type="hidden" th:field="*{id}" />
-    <input type="text" id="Your username" th:field="*{name}" th:placeholder="*{name}"/>
+    <input type="text" id="Your username" th:field="*{username}" th:placeholder="*{username}"/>
     <button type="submit">update</button>
 </form>
 <ul>
@@ -27,7 +27,7 @@
 
 
 <ul th:each="message : ${messages}">
-    <li th:text="${message.getUserName()}"></li>
+    <li th:text="${message.getUsername()}"></li>
     <li style="list-style-type:none" th:text="${message.getText()}"></li>
 </ul>
 <form class=".form-inline" action="/addmessage" th:object="${newMessage}" method="post">
