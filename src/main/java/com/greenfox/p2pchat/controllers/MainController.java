@@ -47,6 +47,7 @@ public class MainController {
     public String postMessage(@ModelAttribute Message message, HttpServletRequest request) {
         mainService.printLog(request);
         messageService.setUser(message);
+        messageService.sendMessage(message, request);
         messageService.save(message);
         return "redirect:/";
     }
