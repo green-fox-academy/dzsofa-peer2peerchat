@@ -46,6 +46,7 @@ public class MainController {
     @PostMapping("/addmessage")
     public String postMessage(@ModelAttribute Message message, HttpServletRequest request) {
         mainService.printLog(request);
+        messageService.setUser(message);
         messageService.save(message);
         return "redirect:/";
     }

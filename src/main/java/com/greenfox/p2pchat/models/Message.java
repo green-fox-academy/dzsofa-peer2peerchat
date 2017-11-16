@@ -3,6 +3,7 @@ package com.greenfox.p2pchat.models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,19 +15,18 @@ public class Message {
     private int id;
     private String text;
     private String username;
-    private String timestamp;
+    private Timestamp timestamp;
 
     public Message(String text, String username) {
         this.text = text;
         this.username = username;
         this.id = (int) (1000000 + Math.random() * 999999);
-        this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+        this.timestamp = new Timestamp(System.currentTimeMillis());
     }
 
     public Message() {
-        this.username = "dzsofa";
         this.id = (int) (1000000 + Math.random() * 999999);
-        this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+        this.timestamp = new Timestamp(System.currentTimeMillis());
 
     }
 
@@ -55,11 +55,12 @@ public class Message {
         this.username = username;
     }
 
-    public String getTimestamp() {
+    public Timestamp getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
+
 }
