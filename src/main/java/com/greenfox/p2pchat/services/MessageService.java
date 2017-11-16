@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Component
 public class MessageService {
 
@@ -17,6 +19,9 @@ public class MessageService {
 
     @Autowired
     ChatUserService userService;
+
+    @Autowired
+    MainService mainService;
 
     public Iterable<Message> listAllMessages() {
         return messageRepository.findAll();
@@ -30,7 +35,8 @@ public class MessageService {
         messageRepository.save(message);
     }
 
-    public void sendMessage(Message message) {
+    public void sendMessage(Message message, HttpServletRequest request) {
+        mainService.printLog(request);
         Wrapper wrapper = new Wrapper(message, new Client());
         RestTemplate template = new RestTemplate();
         String url = "https://dzsofap2p.herokuapp.com/api/message/receive";
