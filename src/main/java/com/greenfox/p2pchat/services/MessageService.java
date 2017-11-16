@@ -39,7 +39,7 @@ public class MessageService {
         mainService.printLog(request);
         Wrapper wrapper = new Wrapper(message, new Client());
         RestTemplate template = new RestTemplate();
-        String url = "https://cryptic-badlands-53822.herokuapp.com/api/message/receive";
+        String url = System.getenv("CHAT_APP_PEER_ADDRESS");
         Status response = template.postForObject(url, wrapper, Status.class);
         System.out.println(response.getStatus());
         System.out.println(response.getMessage());
